@@ -27,9 +27,9 @@ func main() {
 
 	switch messageType {
 	case SMSType:
-		msg = NewSMS(man.PhoneNumber, man.Woman.Cfg.PhoneNumber, "Hi dear...")
+		msg = NewSMS(man.PhoneNumber, man.Woman.PhoneNumber(), "Hi dear...")
 	case PigeonType:
-		msg = NewPigeon(man.Name, "Hi dear...", man.Woman.Cfg.Address)
+		msg = NewPigeon(man.Name, "Hi dear...", man.Woman.Address())
 	}
 
 	man.SendMessage(msg)

@@ -39,3 +39,19 @@ func (w *Woman) ReadMessage(msg Message) (err error) {
 	fmt.Println(fmt.Sprintf("%s: The message is: %s", w.Cfg.Name, msg.Message()))
 	return
 }
+
+func (w *Woman) SendMessage(msg Message) {
+	fmt.Println("I dont know how to send message...")
+}
+
+func (w *Woman) Name() string {
+	return w.Cfg.Name
+}
+
+func (w *Woman) Address() *Address {
+	return w.Cfg.Address
+}
+
+func (w *Woman) PhoneNumber() string {
+	return w.Cfg.PhoneNumber
+}

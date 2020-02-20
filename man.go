@@ -2,13 +2,21 @@ package main
 
 import "fmt"
 
+type Human interface {
+	SendMessage(msg Message)
+	ReadMessage(msg Message) error
+	Name() string
+	Address() *Address
+	PhoneNumber() string
+}
+
 type Man struct {
 	Name        string
 	PhoneNumber string
-	Woman       *Woman
+	Woman       Human
 }
 
-func NewMan(name string, w *Woman) *Man {
+func NewMan(name string, w Human) *Man {
 	if name == "" {
 		name = "Man"
 	}
@@ -20,9 +28,9 @@ func NewMan(name string, w *Woman) *Man {
 }
 
 func (m *Man) SendMessage(msg Message) {
-	fmt.Println(fmt.Sprintf("%s: I'm sending message to my girlfriend %s at %v", m.Name, m.Woman.Cfg.Name, msg.Destination()))
+	fmt.Println(fmt.Sprintf("%s: I'm sending message to my girlfriend %s at %v", m.Name, m.Woman.Name(), msg.Destination()))
 
-	if msg.Destination() != fmt.Sprintf("%v", m.Woman.Cfg.Address) {
+	if msg.Destination() != fmt.Sprintf("%v", m.Woman.Address()) {
 		fmt.Println("Message not sent! So sad... :(")
 		return
 	}
